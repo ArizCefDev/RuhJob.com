@@ -1,32 +1,37 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using RuhJob.com.DataAccess.Context;
 using RuhJob.com.Models;
 
 namespace RuhJob.com.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AppDbContext _db;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AppDbContext db)
         {
-            _logger = logger;
+            _db = db;
         }
 
         public IActionResult Index()
         {
-            return View();
+            ViewBag.c = _db.Categories.ToList();
+
+            var values=_db.Jobs.ToList();
+            return View(values);
         }
 
-        public IActionResult Privacy()
+        public IActionResult Vacancy() 
         {
-            return View();
+            var values = _db.Jobs.ToList();
+            return View(values);
         }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
+        
+        public IActionResult Category()
         {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var values = _db.Categories.ToList();
+            return View(values);
         }
     }
 }
