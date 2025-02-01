@@ -1,0 +1,33 @@
+﻿@model RuhJob.com.DataAccess.Entity.Job
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Single News -->
+<section class="news-single section">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-12">
+				<div class="row">
+					<div class="col-12">
+						<div class="single-main">
+							<!-- Meta -->
+							<div class="meta">
+								<div class="meta-left">
+									<span class="author"><a href="#">@Model.Text</a></span>
+									<span class="date"><i class="fa fa-clock-o"></i>@Model.CreateDate.ToString("dd-MMM")</span>
+								</div>
+							</div>
+							<!-- News Text -->
+							<div class="news-text">
+								<p>@Model.Title</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!--/ End Single News -->

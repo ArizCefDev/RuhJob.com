@@ -18,20 +18,34 @@ namespace RuhJob.com.Controllers
         {
             ViewBag.c = _db.Categories.ToList();
 
-            var values=_db.Jobs.ToList();
+            var values = _db.Jobs.ToList();
             return View(values);
         }
 
-        public IActionResult Vacancy() 
+        public IActionResult Vacancy()
         {
             var values = _db.Jobs.ToList();
             return View(values);
         }
-        
+
         public IActionResult Category()
         {
             var values = _db.Categories.ToList();
             return View(values);
+        }
+
+        public IActionResult Detail(int id)
+        {
+            if (id != null)
+            {
+                var values = _db.Jobs.Find(id);
+                return View(values);
+            }
+            else
+            {
+                return Content("Bu elan movcud deyil");
+            }
+
         }
     }
 }
