@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RuhJob.com.DataAccess.Context;
+using RuhJob.com.DataAccess.Entity;
 
 namespace RuhJob.com.Controllers
 {
@@ -25,8 +26,68 @@ namespace RuhJob.com.Controllers
 
         public IActionResult AboutDelete(int id)
         {
-            _db.Remove(id);
+            var ent = _db.Abouts.Find(id);
+            _db.Remove(ent);
+            _db.SaveChanges();
             return RedirectToAction("About");
         }
+
+        public IActionResult Categoy()
+        {
+            var values = _db.Categories.ToList();
+            return View(values);
+        }
+
+        public IActionResult CategoryDelete(int id)
+        {
+            var ent = _db.Categories.Find(id);
+            _db.Remove(ent);
+            _db.SaveChanges();
+            return RedirectToAction("Categoy");
+        }
+
+        [HttpGet]
+        public IActionResult CategoryAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult CategoryAdd(Category p)
+        {
+            _db.Add(p);
+            _db.SaveChanges();
+            return RedirectToAction("Categoy");
+        }
+
+
+        public IActionResult Contact()
+        {
+            var values=_db.Contacts.ToList();
+            return View(values);
+        }
+
+        public IActionResult ContactDelete(int id) { 
+        
+            var ent = _db.Contacts.Find(id);    
+            _db.Remove(ent);
+            _db.SaveChanges();
+            return RedirectToAction("Contact");
+        }
+
+        [HttpGet]
+        public IActionResult ContactAdd()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult ContactAdd(Contact p)
+        {
+            _db.Add(p);
+            _db.SaveChanges();
+            return RedirectToAction("Contact");
+        }
+
     }
 }

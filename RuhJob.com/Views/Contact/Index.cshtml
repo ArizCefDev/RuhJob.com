@@ -1,4 +1,4 @@
-﻿
+﻿@model List<RuhJob.com.DataAccess.Entity.Contact>
 @{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -9,28 +9,31 @@
 	<div class="container">
 		<div class="contact-info">
 			<div class="row">
-				<!-- single-info -->
-				<div class="col-lg-6 col-12 ">
-					<div class="single-info">
-						<i class="icofont icofont-ui-call"></i>
-						<div class="content">
-							<h3>+(000) 1234 56789</h3>
-							<p>info@company.com</p>
+				@foreach (var item in Model)
+				{
+					<!-- single-info -->
+					<div class="col-lg-6 col-12 ">
+						<div class="single-info">
+							<i class="icofont icofont-ui-call"></i>
+							<div class="content">
+								<h3>@item.Telephone</h3>
+								<p>Telephone</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!--/End single-info -->
-				<!-- single-info -->
-				<div class="col-lg-6 col-12 ">
-					<div class="single-info">
-						<i class="icofont-google-map"></i>
-						<div class="content">
-							<h3>2 Fir e Brigade Road</h3>
-							<p>Chittagonj, Lakshmipur</p>
+					<!--/End single-info -->
+					<!-- single-info -->
+					<div class="col-lg-6 col-12 ">
+						<div class="single-info">
+							<i class="icofont-envelope"></i>
+							<div class="content">
+								<h3>@item.Email</h3>
+								<p>Email address</p>
+							</div>
 						</div>
 					</div>
-				</div>
-				<!--/End single-info -->
+					<!--/End single-info -->
+				}
 			</div>
 		</div>
 	</div>
