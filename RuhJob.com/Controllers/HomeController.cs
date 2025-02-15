@@ -47,5 +47,12 @@ namespace RuhJob.com.Controllers
             }
 
         }
+
+        public IActionResult CategoryJob(int id) 
+        {
+            var values = _db.Jobs.Where(x=>x.CategoryID==id).ToList();
+            return View(values);
+        }
+
     }
 }
