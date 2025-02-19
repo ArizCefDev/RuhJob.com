@@ -1,0 +1,60 @@
+﻿@model RuhJob.com.DataAccess.Entity.Job
+@{
+    ViewData["Title"] = "JobUpdate";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<!-- /. NAV SIDE  -->
+<div id="page-wrapper">
+    <div id="page-inner">
+        <div class="row">
+            <form method="post">
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label>Title</label>
+                        <input class="form-control" name="Title" value="@Model.Title" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label>Text</label>
+                        <input class="form-control" name="Text" value="@Model.Text" />
+                    </div>
+                </div>
+               
+                 <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label>Create</label>
+                        <input class="form-control" name="CreateDate" value="@Model.CreateDate" />
+                    </div>
+                </div>
+                 <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input class="form-control" name="Price" value="@Model.Price" />
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="form-group">
+                        <label>CategoryID</label>
+                        <select type="text" class="form-control" asp-for="CategoryID">
+                            @foreach (var item in ViewBag.list)
+                            {
+                                <option value="@item.ID">@item.Name</option>
+                            }
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-lg-12 col-md-12">
+                    <div class="form-group">
+                        <button class="btn btn-primary">Update</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <!-- /. PAGE INNER  -->
+</div>
+<!-- /. PAGE WRAPPER  -->
