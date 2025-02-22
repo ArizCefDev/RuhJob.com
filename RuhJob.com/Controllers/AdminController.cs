@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using RuhJob.com.DataAccess.Context;
 using RuhJob.com.DataAccess.Entity;
 
@@ -92,7 +93,8 @@ namespace RuhJob.com.Controllers
 
         public IActionResult Jobs() 
         {
-            var values = _db.Jobs.ToList();
+            var values = _db.Jobs
+                .Include(x=>x.Category).ToList();
             return View(values);
         }
 
