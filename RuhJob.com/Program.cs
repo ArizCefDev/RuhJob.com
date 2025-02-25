@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.EntityFrameworkCore;
 using RuhJob.com.DataAccess.Context;
 
@@ -8,6 +9,27 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<AppDbContext>(opt =>
 opt.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//Cookie
+builder.Services.AddDistributedMemoryCache();
+builder.Services.AddSession();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+  .AddCookie((opt =>
+  {
+      opt.Cookie.HttpOnly = true;
+      opt.Cookie.Name = "AuthCookie";
+      opt.Cookie.MaxAge = TimeSpan.FromDays(5);
+
+      opt.Events = new CookieAuthenticationEvents
+      {
+          OnRedirectToLogin = x =>
+          {
+              x.HttpContext.Response.StatusCode = 401;
+              return Task.CompletedTask;
+          }
+      };
+  }));
 
 
 var app = builder.Build();
@@ -25,7 +47,10 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthorization();
+//cookie
+app.UseSession();
+app.UseAuthentication();
+///
 
 app.MapControllerRoute(
     name: "default",

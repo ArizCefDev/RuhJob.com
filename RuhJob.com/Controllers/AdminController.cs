@@ -1,10 +1,13 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using RuhJob.com.Crypto;
 using RuhJob.com.DataAccess.Context;
 using RuhJob.com.DataAccess.Entity;
 
 namespace RuhJob.com.Controllers
 {
+   // [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         private readonly AppDbContext _db;

@@ -1,4 +1,5 @@
-﻿<!doctype html>
+﻿@using RuhJob.com.Crypto
+<!doctype html>
 <html class="no-js" lang="zxx">
 
 <head>
@@ -61,7 +62,11 @@
 						<ul class="top-link">
 							<li><a href="/About/Index/">About</a></li>
 							<li><a href="/Contact/Index/">Contact</a></li>
-							<li><a href="/Admin/Index/">Admin</a></li>
+							@if (User.IsInRole(RoleKeywords.AdminRole))
+							{
+								<li><a href="/Admin/Index/">Admin</a></li>
+							}
+							
 						</ul>
 						<!-- End Contact -->
 					</div>
